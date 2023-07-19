@@ -1,6 +1,8 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
+let rejectCalls = true;
+
 const client = new Client({
     authStrategy: new LocalAuth()
 });
@@ -29,7 +31,10 @@ client.on('ready', () => {
 });
 
 client.on('message', async msg => {
-    console.log('Pesan Masuk: ', msg);
+
+    if (process.env.TYPE = 'debug'){
+        console.log('Pesan Masuk: ', msg);
+    }
 
     if (msg.body === '.tes') {
         client.sendMessage(msg.from, 'aman...')
@@ -37,8 +42,6 @@ client.on('message', async msg => {
         client.sendMessage(msg.from, "Selamat Datang di Ngubalan SmartChat")
     }
 });
-
-let rejectCalls = true;
 
 client.on('call', async (call) => {
     console.log('Call received, rejecting. GOTO Line 261 to disable', call);

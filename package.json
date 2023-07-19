@@ -4,6 +4,7 @@
     "whatsapp-web.js": "^1.21.0"
   },
   "scripts": {
-    "dev": "node start-bot.js"
+    "dev": "node start-bot.js TYPE=debug",
+    "build": "node start-bot.js"
   }
 }
