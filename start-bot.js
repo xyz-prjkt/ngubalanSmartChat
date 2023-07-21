@@ -65,19 +65,20 @@ client.on('message', async msg => {
         const regexSK = /\.REGSK\s+(.*?),(.*?),(.*?)$/;
         const userData = regexSK.exec(msg.body); 
         if (userData){
-            const filename = 'SK_' + userData[1] + '_' + dateFormatSK();
             await createSK(
-                filename,
+                'SK_' + userData[1] + '_' + dateFormatSK(),
                 userData[1],
                 userData[2],
                 userData[3]
             );
-            const getDoc = MessageMedia.fromFilePath(process.env.DATA_DIR + 'SK/' + filename + '.pdf');
-            client.sendMessage(msg.from, getDoc, {
+            client.sendMessage(msg.from, MessageMedia.fromFilePath(process.env.DATA_DIR + 'SK/' + filename + '.pdf'), {
                 caption: 'Ini Surat Keterangannya.'
             });
         } else {
-            client.sendMessage(msg.from, "Perintah .REGSK: Tidak Sesuai Format")
+            client.sendMessage(msg.from, "Perintah .REGSK: Tidak Sesuai Format");
+            client.sendMessage(msg.from, MessageMedia.fromFilePath('./images/EXAMPLE_REGSK.png'),{
+                caption: 'Berikut ini contoh penulisan format .REGSK yang benar.'
+            });
         }
     } else {
         client.sendMessage(msg.from, "Selamat Datang di Ngubalan SmartChat\n1. Buat Surat Keterangan")
