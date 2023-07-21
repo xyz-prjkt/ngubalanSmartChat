@@ -1,7 +1,8 @@
+import { createSK } from './lib/docsGenerator.js'
+import { dateTimeFormat } from './lib/commonUtils.js';
 import WhatsappWeb from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
 import dotenv from 'dotenv';
-import createSK from './lib/pdf.js'
 
 const { Client, LocalAuth, MessageMedia } = WhatsappWeb;
 
@@ -49,12 +50,12 @@ client.on('message', async msg => {
         const userData = regexSK.exec(msg.body); 
         if (userData){
             await createSK(
-                'SK_' + userData[1] + '_' + dateFormatSK(),
+                'SK_' + userData[1] + '_' + dateTimeFormat(),
                 userData[1],
                 userData[2],
                 userData[3]
             );
-            client.sendMessage(msg.from, MessageMedia.fromFilePath(process.env.DATA_DIR + 'SK/' + filename + '.pdf'), {
+            client.sendMessage(msg.from, MessageMedia.fromFilePath(process.env.DATA_DIR + 'SK/' + 'SK_' + userData[1] + '_' + dateTimeFormat() + '.pdf'), {
                 caption: 'Ini Surat Keterangannya.'
             });
         } else {
@@ -64,7 +65,7 @@ client.on('message', async msg => {
             });
         }
     } else {
-        client.sendMessage(msg.from, "Selamat Datang di Ngubalan SmartChat\n1. Buat Surat Keterangan")
+        client.sendMessage(msg.from, "Selamat Datang di Ngubalan SmartChat\n1. Buat Surat Keterangan\nPilih menu dengan cara membalas pesan ini dengan no menu yang diinginkan")
     }
 });
 
@@ -76,18 +77,3 @@ client.on('call', async (call) => {
 client.on('disconnected', (reason) => {
     console.log('Client was logged out', reason);
 });
-
-function dateFormatSK() {
-    const currentDate = new Date();
-  
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    const hours = String(currentDate.getHours()).padStart(2, '0');
-    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-  
-    const customFormat = `${hours}${minutes}${day}${month}${year}${seconds}`;
-  
-    return customFormat;
-}
