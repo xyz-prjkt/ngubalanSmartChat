@@ -1,8 +1,12 @@
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
+const dotenv = require('dotenv');
+
 const PDFLib = require('pdf-lib');
 const PDFDocument = PDFLib.PDFDocument;
+
+dotenv.config();
 
 async function createSK(filename, name, work, address){
 
@@ -17,7 +21,7 @@ async function createSK(filename, name, work, address){
     firstPage.drawText(work, { x: 300, y: height / 2 + 310, size: 10 });
     firstPage.drawText(address, { x: 300, y: height / 2 + 320, size: 10 });
 
-    fs.writeFileSync('/home/gitpod/temp/' + filename + '.pdf', await pdfDoc.save());
+    fs.writeFileSync(process.env.DATA_DIR + 'SK/' + filename + '.pdf', await pdfDoc.save());
 }
 
 const client = new Client({
@@ -68,7 +72,7 @@ client.on('message', async msg => {
                 userData[2],
                 userData[3]
             );
-            const getDoc = MessageMedia.fromFilePath('/home/gitpod/temp/' + filename + '.pdf');
+            const getDoc = MessageMedia.fromFilePath(process.env.DATA_DIR + 'SK/' + filename + '.pdf');
             client.sendMessage(msg.from, getDoc, {
                 caption: 'Ini Surat Keterangannya.'
             });
@@ -102,4 +106,4 @@ function dateFormatSK() {
     const customFormat = `${hours}${minutes}${day}${month}${year}${seconds}`;
   
     return customFormat;
-  }
+}
