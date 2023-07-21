@@ -1,28 +1,11 @@
-const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
-const qrcode = require('qrcode-terminal');
-const fs = require('fs');
-const dotenv = require('dotenv');
+import WhatsappWeb from 'whatsapp-web.js';
+import qrcode from 'qrcode-terminal';
+import dotenv from 'dotenv';
+import createSK from './lib/pdf.js'
 
-const PDFLib = require('pdf-lib');
-const PDFDocument = PDFLib.PDFDocument;
+const { Client, LocalAuth, MessageMedia } = WhatsappWeb;
 
 dotenv.config();
-
-async function createSK(filename, name, work, address){
-
-    const pdfData = await fs.readFileSync('./templates/SKLurahCamat.pdf');
-    const pdfDoc = await PDFDocument.load(pdfData);
-
-    const pages = pdfDoc.getPages();
-    const firstPage = pages[0];
-    const { width, height } = firstPage.getSize();
-
-    firstPage.drawText(name, { x: 300, y: height / 2 + 300, size: 10 });
-    firstPage.drawText(work, { x: 300, y: height / 2 + 310, size: 10 });
-    firstPage.drawText(address, { x: 300, y: height / 2 + 320, size: 10 });
-
-    fs.writeFileSync(process.env.DATA_DIR + 'SK/' + filename + '.pdf', await pdfDoc.save());
-}
 
 const client = new Client({
     authStrategy: new LocalAuth()
@@ -57,8 +40,8 @@ client.on('message', async msg => {
         console.log('Pesan Masuk: ', msg);
     }
     
-    if (msg.body === '.tes') {
-        client.sendMessage(msg.from, 'aman...')
+    if (msg.body === '.ping') {
+        msg.getReactions();
     } else if (msg.body === '1'){
         client.sendMessage(msg.from, 'Masukkan Data dibawah sesuai format dibawah ini, \n.REGSK NAMA_LENGKAP,PEKERJAAN,ALAMAT\nKirim data tersebut dengan me-reply pesan ini.');
     } else if (msg.body.includes('.REGSK')){
@@ -86,8 +69,8 @@ client.on('message', async msg => {
 });
 
 client.on('call', async (call) => {
-    console.log('Call received, rejecting. GOTO Line 261 to disable', call);
-    if (rejectCalls) await call.reject();
+    console.log('Call received, rejecting.', call);
+    await call.reject();
 });
 
 client.on('disconnected', (reason) => {
