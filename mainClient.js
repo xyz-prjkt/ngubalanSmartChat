@@ -11,7 +11,7 @@ export var {
 
 var client = new Client({
     authStrategy: new LocalAuth()
-});    
+});
 
 clientAuth(client);
 clientDebugger(client);
