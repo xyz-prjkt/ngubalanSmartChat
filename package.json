@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@thiagoelg/node-printer": "^0.6.2",
     "dotenv": "^16.3.1",
     "pdf-lib": "^1.17.1",
     "puppeteer": "^20.9.0",
