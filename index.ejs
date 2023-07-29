@@ -31,8 +31,8 @@
         <td><%= data[3].alamat %></td>
         <td>
           <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
-          <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
           <button class="btnReject" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+          <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
         </td>
       </tr>
       <% }) %>
