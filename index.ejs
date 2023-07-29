@@ -3,6 +3,8 @@
 
 <head>
   <title>Ngubalan Smart Chat Panel</title>
+  <link rel="stylesheet" href="./index.ejs.css">
+</head>
 
 <body>
   <h1>Ngubalan Smart Chat Panel</h1>
@@ -27,7 +29,6 @@
       <td><%= data[3].bekerja %></td>
       <td><%= data[3].alamat %></td>
       <td>
-        <!-- Button for each data row -->
         <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
         <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
         <button class="btnReject" data-id="<%= index %>">Reject</button>
@@ -35,72 +36,7 @@
     </tr>
     <% }) %>
   </table>
-
-  <script>
-    document.addEventListener('click', async function(event) {
-      if (event.target && event.target.classList.contains('btnPrint')) {
-        const skType = event.target.dataset.sktype;
-        const nama = event.target.dataset.nama;
-        const nik = event.target.dataset.nik;
-        const ttl = event.target.dataset.ttl;
-        const agama = event.target.dataset.agama;
-        const bekerja = event.target.dataset.bekerja;
-        const alamat = event.target.dataset.alamat;
-        const datetime = event.target.dataset.datetime;
-
-        const response = await fetch("/genDoc", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            skType,
-            nama,
-            nik,
-            ttl,
-            agama,
-            bekerja,
-            alamat,
-            datetime
-          }),
-        });
-
-      } else if (event.target && event.target.classList.contains('btnReject')) {
-        const dataId = event.target.dataset.id;
-        if (!dataId || isNaN(dataId)) {
-          return;
-        }
-
-        const response = await fetch(`/deleteData/${dataId}`, {
-          method: "DELETE",
-        });
-
-        if (response.ok) {
-          window.location.reload();
-        }
-      } else if (event.target && event.target.classList.contains('btnDone')) {
-        const dataId = event.target.dataset.id;
-        const notelp = event.target.dataset.notelp;
-        const msg = 'Surat sudah siap diambil di Balai Desa';
-
-        const response = fetch("/sendMsg", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            notelp,
-            msg,
-          }),
-        });
-
-        const deleteResponse = fetch(`/deleteData/${dataId}`, {
-          method: "DELETE",
-        });
-        window.location.reload();
-      }
-    });
-  </script>
+  <script src="./index.ejs.js"></script>
 </body>
 
 </html>
