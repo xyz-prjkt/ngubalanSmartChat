@@ -8,35 +8,38 @@
 
 <body>
   <h1>Ngubalan Smart Chat Panel</h1>
-  <table>
-    <tr>
-      <th>SK Type</th>
-      <th>Nama</th>
-      <th>NIK</th>
-      <th>TTL</th>
-      <th>Agama</th>
-      <th>Bekerja</th>
-      <th>Alamat</th>
-      <th>Action</th>
-    </tr>
-    <% postedData.forEach((data, index) => { %>
-    <tr>
-      <td><%= data[0]%></td>
-      <td><%= data[3].nama %></td>
-      <td><%= data[3].nik %></td>
-      <td><%= data[3].ttl %></td>
-      <td><%= data[3].agama %></td>
-      <td><%= data[3].bekerja %></td>
-      <td><%= data[3].alamat %></td>
-      <td>
-        <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
-        <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
-        <button class="btnReject" data-id="<%= index %>">Reject</button>
-      </td>
-    </tr>
-    <% }) %>
-  </table>
-  <script src="./index.ejs.js"></script>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>SK Type</th>
+        <th>Nama</th>
+        <th>NIK</th>
+        <th>TTL</th>
+        <th>Agama</th>
+        <th>Bekerja</th>
+        <th>Alamat</th>
+        <th>Action</th>
+      </tr>
+      <% postedData.forEach((data, index) => { %>
+      <tr>
+        <td><%= data[0]%></td>
+        <td><%= data[3].nama %></td>
+        <td><%= data[3].nik %></td>
+        <td><%= data[3].ttl %></td>
+        <td><%= data[3].agama %></td>
+        <td><%= data[3].bekerja %></td>
+        <td><%= data[3].alamat %></td>
+        <td>
+          <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+          <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+          <button class="btnReject" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
+
+  <script src="/index.ejs.js"></script>
 </body>
 
 </html>
