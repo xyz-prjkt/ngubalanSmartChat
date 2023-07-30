@@ -1,0 +1,79 @@
+.site-footer {
+  color: #aaa;
+  background-color: #1d1e20;
+}
+.site-footer a {
+  color: inherit;
+}
+.site-footer a:hover {
+  color: #eee;
+}
+.site-info {
+  font-size: 12px;
+}
+.footer-info {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.footer-identity div > * {
+  margin: 0;
+  line-height: 1;
+}
+.footer-identity p {
+  font-size: 11px;
+  text-indent: 3px;
+  letter-spacing: 6px;
+}
+.footer-identity h5 {
+  font-size: 33px;
+  font-weight: 700;
+}
+.footer-identity h6 {
+  font-size: 11px;
+  text-indent: 1px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.list-ionicons {
+  padding-left: 1.75em !important;
+}
+.list-ionicons .ionicons {
+  float: left;
+  width: 1.2em;
+  margin-left: -1.75em !important;
+  text-align: center;
+  line-height: 1.5;
+  position: relative;
+  top: 0.1em;
+}
+.social-network {
+  font-size: 21px;
+}
+.social-network a {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border-radius: 50%;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.social-network a:hover {
+  background: #fcfcfc;
+}
+.social-network a.facebook:hover {
+  color: #3b5998;
+}
+.social-network a.instagram:hover {
+  color: #262626;
+}
+.social-network a.twitter:hover {
+  color: #1da1f2;
+}
+.social-network a.youtube:hover {
+  color: #db4437;
+}
+.social-network a.rss:hover {
+  color: #f26522;
+}
