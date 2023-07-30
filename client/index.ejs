@@ -14,110 +14,137 @@
   <link rel="stylesheet" href="./css/index.ejs.css">
   <link rel="stylesheet" href="./css/footer.ejs.css">
   <link rel="stylesheet" href="./css/header.ejs.css">
-  <link rel='stylesheet' id='ionicons-css' href='http://ngubalan.tulungagungdaring.id/templates/webdesa/assets/ionicons/css/ionicons.min.css?ver=4.2.6' type='text/css' media='all' />
+  <link rel="stylesheet" href="./css/sidebar.ejs.css">
 
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container px-3">
-      <div class="navbar-brand d-flex align-items-center py-0">
-        <div class="site-icon mr-2"><img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="icon"></div>
-        <div class="site-identity px-1">
-          <p class="site-name logo h4 text-uppercase my-0"><a href="http://ngubalan.tulungagungdaring.id/" rel="home">Desa Ngubalan</a></p>
-          <p class="site-desc my-0 text-uppercase">Kec. Kalidawir - Kab. Tulungagung</p>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 d-none d-md-flex flex-column flex-shrink-0 p-3 bg-light">
+        <div class="d-flex align-items-center mb-3 mb-md-0">
+          <div class="site-icon mr-2">
+            <img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="icon">
+          </div>
+          <div class="site-identity">
+            <p class="site-name logo h4 text-uppercase my-0">
+              <a href="http://ngubalan.tulungagungdaring.id/" rel="home" <a href="http://ngubalan.tulungagungdaring.id/" rel="home" style="font-size: 20px; font-weight: 500; color: #000; text-decoration: none;">Desa Ngubalan</a>
+            </p>
+            <p class="site-desc my-0 text-uppercase">Kec. Kalidawir - Kab. Tulungagung</p>
+          </div>
         </div>
-      </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/">SKTM</a></li>
-          <li class="nav-item"><a class="nav-link" href="/">SKCK</a></li>
-          <li class="nav-item"><a class="nav-link" href="/">SKAK</a></li>
-          <li class="nav-item"><a class="nav-link" href="/">SKKI</a></li>
-          <li class="nav-item"><a class="nav-link" href="/">SKIO</a></li>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link active link-dark" aria-current="page">Semua SK</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-dark">SKTM</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-dark">SKCK</a>
+          </li>
         </ul>
       </div>
-    </div>
-  </nav>
-  <div class="container py-5">
-    <h1 class="container-title">Ngubalan Smart Chat Panel</h1>
-    <div class="table-container">
-      <table>
-        <tr>
-          <th>SK Type</th>
-          <th>Nama</th>
-          <th>NIK</th>
-          <th>TTL</th>
-          <th>Agama</th>
-          <th>Bekerja</th>
-          <th>Alamat</th>
-          <th>Action</th>
-        </tr>
-        <% postedData.forEach((data, index) => { %>
-        <tr>
-          <td><%= data[0]%></td>
-          <td><%= data[3].nama %></td>
-          <td><%= data[3].nik %></td>
-          <td><%= data[3].ttl %></td>
-          <td><%= data[3].agama %></td>
-          <td><%= data[3].bekerja %></td>
-          <td><%= data[3].alamat %></td>
-          <td>
-            <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
-            <button class="btnReject" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
-            <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
-          </td>
-        </tr>
-        <% }) %>
-      </table>
-    </div>
-  </div>
-  <footer id="colophon" class="site-footer text-center" role="contentinfo">
-    <div class="footer-info py-4 py-md-5">
-      <div class="container">
-        <div class="d-md-flex justify-content-md-around align-items-md-center">
-          <div class="text-center">
-            <div class="footer-identity d-md-flex align-items-md-center">
-              <div class="site-icon footer-icon mx-auto d-block mr-md-3 my-2 my-md-0">
-                <img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="" width="60" height="60">
-              </div>
-              <div class="text-uppercase">
-                <p>Pemerintah desa</p>
-                <h5>Ngubalan </h5>
-                <h6>Kec. Kalidawir – Kab. Tulungagung</h6>
+
+      <div class="col-12 col-md-9">
+        <nav class="navbar navbar-light bg-light d-md-none">
+          <div class="container px-3">
+            <div class="navbar-brand d-flex align-items-center py-0">
+              <div class="site-icon mr-2"><img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="icon"></div>
+              <div class="site-identity px-1">
+                <p class="site-name logo h4 text-uppercase my-0"><a href="http://ngubalan.tulungagungdaring.id/" rel="home">Desa Ngubalan</a></p>
+                <p class="site-desc my-0 text-uppercase">Kec. Kalidawir - Kab. Tulungagung</p>
               </div>
             </div>
-
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/">Semua SK</a></li>
+                <li class="nav-item"><a class="nav-link" href="/">SKTM</a></li>
+                <li class="nav-item"><a class="nav-link" href="/">SKCK</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="text-center">
-            <ul class="list-unstyled list-ionicons w-auto mr-auto mt-3 mt-md-0 mb-0 text-left d-inline-block d-md-block footer-contact">
-              <li class="my-2"><i class="ionicons ion-ios-home"></i> Jalan Pakunden No. 1 Ds. Ngubalan Kec. Kalidawir Tulungagung</li>
-              <li class="my-2"><i class="ionicons ion-ios-call"></i> 0847 3679 5442 </li>
-              <li class="my-2"><i class="ionicons ion-ios-mail"></i> desangubalan [at] gmail.com</li>
-              <li class="my-2"><i class="ionicons ion-ios-planet"></i> http://ngubalan.tulungagungdaring.id</li>
-            </ul>
+        </nav>
+        <div class="container py-2">
+          <h1 class="container-title">Ngubalan Smart Chat Panel</h1>
+          <div class="table-container">
+            <table>
+              <tr>
+                <th>SK Type</th>
+                <th>Nama</th>
+                <th>NIK</th>
+                <th>TTL</th>
+                <th>Agama</th>
+                <th>Bekerja</th>
+                <th>Alamat</th>
+                <th>Action</th>
+              </tr>
+              <% postedData.forEach((data, index) => { %>
+              <tr>
+                <td><%= data[0]%></td>
+                <td><%= data[3].nama %></td>
+                <td><%= data[3].nik %></td>
+                <td><%= data[3].ttl %></td>
+                <td><%= data[3].agama %></td>
+                <td><%= data[3].bekerja %></td>
+                <td><%= data[3].alamat %></td>
+                <td>
+                  <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                  <button class="btnReject" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+                  <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+                </td>
+              </tr>
+              <% }) %>
+            </table>
           </div>
-        </div><!-- .site-info -->
+        </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="site-info py-4">
-        <p class="mb-0">
-          <span class="d-inline-block">© <a href="http://ngubalan.tulungagungdaring.id/">Pemerintah Desa Ngubalan</a>. Hak cipta dilindungi undang-undang.</span> <span class="d-inline-block">Jejaring <a href="http://desadaring.id/" target="_blank">Desa Daring</a> <a href="http://tulungagungdaring.id/" target="_blank">Tulungagung</a>.</span> :)
+      <footer id="colophon" class="site-footer text-center" class="container-footer" role="contentinfo">
+        <div class="footer-info py-4 py-md-5">
+          <div class="container">
+            <div class="d-md-flex justify-content-md-around align-items-md-center">
+              <div class="text-center">
+                <div class="footer-identity d-md-flex align-items-md-center">
+                  <div class="site-icon footer-icon mx-auto d-block mr-md-3 my-2 my-md-0">
+                    <img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="" width="60" height="60">
+                  </div>
+                  <div class="text-uppercase">
+                    <p>Pemerintah desa</p>
+                    <h5>Ngubalan </h5>
+                    <h6>Kec. Kalidawir – Kab. Tulungagung</h6>
+                  </div>
+                </div>
 
-          <!-- <span class="d-inline-block">Dibangun oleh <a href="//www.spora.id/" target="_blank" rel="nofollow">Spora Digital</a> menggunakan <a href="//jv.wordpress.org/" target="_blank" rel="nofollow">WordPress</a>.</span> -->
-        </p>
-      </div><!-- .site-info -->
+              </div>
+              <div class="text-center">
+                <ul class="list-unstyled list-ionicons w-auto mr-auto mt-3 mt-md-0 mb-0 text-left d-inline-block d-md-block footer-contact">
+                  <li class="my-2"><i class="ionicons ion-ios-home"></i> Jalan Pakunden No. 1 Ds. Ngubalan Kec. Kalidawir Tulungagung</li>
+                  <li class="my-2"><i class="ionicons ion-ios-call"></i> 0847 3679 5442 </li>
+                  <li class="my-2"><i class="ionicons ion-ios-mail"></i> desangubalan [at] gmail.com</li>
+                  <li class="my-2"><i class="ionicons ion-ios-planet"></i> http://ngubalan.tulungagungdaring.id</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="site-info py-4">
+            <p class="mb-0">
+              <span class="d-inline-block">© <a href="http://ngubalan.tulungagungdaring.id/">Pemerintah Desa Ngubalan</a>. Hak cipta dilindungi undang-undang.</span> <span class="d-inline-block">Jejaring <a href="http://desadaring.id/" target="_blank">Desa Daring</a> <a href="http://tulungagungdaring.id/" target="_blank">Tulungagung</a>.</span>
+            </p>
+          </div>
+        </div>
+        <a href="javascript:void(0);" id="rocketmeluncur" class="showrocket" style="display: inline;"></a>
+      </footer>
     </div>
-    <a href="javascript:void(0);" id="rocketmeluncur" class="showrocket" style="display: inline;"></a>
-  </footer>
+  </div>
 
   <script src="./js/index.ejs.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 </body>
 
 </html>

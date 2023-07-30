@@ -7,14 +7,16 @@
 	line-height: 1.7;
 }
 
-body {
-}
+/* html, body {
+  min-height: 1500px;
+} */
 
 h1 {
   padding: 20px 0;
 }
 
 .table-container {
+  height: 600px;
   margin: 0 auto;
   overflow-x: auto;
 }
@@ -67,6 +69,12 @@ tr:hover {
 
 .container-title {
   font-family: 'Playfair Display', serif;
+}
+
+.placeholder {
+  height: 700px; /* Adjust the height as per your requirement */
+  /* Or use padding if you want the placeholder to have some background color or border */
+  /* padding: 20px; */
 }
 
 /* Media queries for responsive design */
