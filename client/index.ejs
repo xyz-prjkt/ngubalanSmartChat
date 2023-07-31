@@ -92,7 +92,11 @@
                 <td><%= data[3].bekerja %></td>
                 <td><%= data[3].alamat %></td>
                 <td>
+                  <% if (data[0] === 'SKTM') { %>
                   <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                  <% } else if (data[0] === 'SKIK') { %>
+                  <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-namaortu="<%= data[3].namaOrtu %>" data-ttlortu="<%= data[3].ttlOrtu %>" data-alamatortu="<%= data[3].alamatOrtu %>" data-nikortu="<%= data[3].nikOrtu %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-alamat="<%= data[3].alamat %>" data-nik="<%= data[3].nik %>" data-destination="<%= data[3].destination %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                  <% } %>
                   <button class="btnReject" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
                   <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
                 </td>
