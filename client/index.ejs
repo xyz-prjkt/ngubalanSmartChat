@@ -71,6 +71,7 @@
         <div class="container py-2">
           <h1 class="container-title">Ngubalan Smart Chat Panel</h1>
           <div class="table-container">
+            <% if (postedData.length > 0) { %>
             <table>
               <tr>
                 <th>SK Type</th>
@@ -103,6 +104,13 @@
               </tr>
               <% }) %>
             </table>
+            <% } else { %>
+            <div class="">
+              <div class="d-flex justify-content-center align-items-center">
+                <a style="font-size: 24px; font-weight: 400;">Data No Found</a>
+              </div>
+            </div>
+            <% } %>
           </div>
         </div>
       </div>
