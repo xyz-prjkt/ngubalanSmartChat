@@ -10,7 +10,7 @@ document.addEventListener("click", async function (event) {
       const alamat = event.target.dataset.alamat;
       const datetime = event.target.dataset.datetime;
 
-      await fetch("/genDoc", {
+      const response = await fetch("/genDoc", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,6 +26,13 @@ document.addEventListener("click", async function (event) {
           datetime,
         }),
       });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+        URL.revokeObjectURL(url);
+      }
     }
   } else if (event.target && event.target.classList.contains("btnReject")) {
     const adminReason = window.prompt(`Alasan permintaan surat ditolak? `);
