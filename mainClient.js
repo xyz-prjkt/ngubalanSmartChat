@@ -10,7 +10,7 @@ export var client = new Client({
   authStrategy: new LocalAuth(),
 });
 
-clientAPI();
+clientAPI(client);
 clientAuth(client);
 clientDebugger(client);
 clientHandler(client);
