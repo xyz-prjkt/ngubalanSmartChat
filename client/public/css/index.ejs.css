@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
@@ -17,11 +16,17 @@ h1 {
 
 .table-container {
   height: 600px;
+  table-layout: fixed;
   margin: 0 auto;
   overflow-x: auto;
 }
 
+.table-content {
+  animation: fadeEffect 1s;
+}
+
 table {
+  table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
 }
@@ -75,6 +80,19 @@ tr:hover {
   height: 700px; /* Adjust the height as per your requirement */
   /* Or use padding if you want the placeholder to have some background color or border */
   /* padding: 20px; */
+}
+
+.table-card-bg-style table {
+  background-color: #fff; /* Table background color */
+}
+
+.table-card-bg-style th {
+  background-color: #007bff; /* Header background color */
+  color: #fff; /* Header text color */
+}
+
+.table-card-bg-style td {
+  background-color: #f7f7f7; /* Table cell background color */
 }
 
 /* Media queries for responsive design */

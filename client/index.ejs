@@ -19,14 +19,10 @@
 </head>
 
 <body>
-
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3 d-none d-md-flex flex-column flex-shrink-0 p-3 bg-light">
-        <div class="d-flex align-items-center mb-3 mb-md-0">
-          <div class="site-icon mr-2">
-            <img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="icon">
-          </div>
+        <div class="d-flex align-items-center mb-3 mb-md-0" style="padding: 1rem;">
           <div class="site-identity">
             <p class="site-name logo h4 text-uppercase my-0">
               <a href="http://ngubalan.tulungagungdaring.id/" rel="home" <a href="http://ngubalan.tulungagungdaring.id/" rel="home" style="font-size: 20px; font-weight: 500; color: #000; text-decoration: none;">Desa Ngubalan</a>
@@ -36,14 +32,14 @@
         </div>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link active link-dark" aria-current="page">Semua SK</a>
+          <li id="defaultOpen" class="nav-link active link-dark" onclick="openSK(event, 'ALL')">
+            <a class="nav-link link-dark">All Data</a>
           </li>
-          <li>
-            <a href="#" class="nav-link link-dark">SKTM</a>
+          <li class="nav-link link-dark" onclick="openSK(event, 'SKTM')">
+            <a class="nav-link link-dark">SKTM</a>
           </li>
-          <li>
-            <a href="#" class="nav-link link-dark">SKCK</a>
+          <li class="nav-link link-dark" onclick="openSK(event, 'SKIK')">
+            <a class="nav-link link-dark">SKIK</a>
           </li>
         </ul>
       </div>
@@ -68,90 +64,128 @@
             </div>
           </div>
         </nav>
-        <div class="container py-2">
+        <div class="container">
           <h1 class="container-title">Ngubalan Smart Chat Panel</h1>
-          <div class="table-container">
-            <% if (postedData.length > 0) { %>
-            <table>
-              <tr>
-                <th>SK Type</th>
-                <th>Nama</th>
-                <th>NIK</th>
-                <th>TTL</th>
-                <th>Agama</th>
-                <th>Bekerja</th>
-                <th>Alamat</th>
-                <th>Action</th>
-              </tr>
-              <% postedData.forEach((data, index) => { %>
-              <tr>
-                <td><%= data[0]%></td>
-                <td><%= data[3].nama %></td>
-                <td><%= data[3].nik %></td>
-                <td><%= data[3].ttl %></td>
-                <td><%= data[3].agama %></td>
-                <td><%= data[3].bekerja %></td>
-                <td><%= data[3].alamat %></td>
-                <td>
-                  <% if (data[0] === 'SKTM') { %>
-                  <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-namaKepala="<%= data[3].namaKepala %>" data-nokk="<%= data[3].noKK %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
-                  <% } else if (data[0] === 'SKIK') { %>
-                  <button class="btnPrint" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-namaortu="<%= data[3].namaOrtu %>" data-ttlortu="<%= data[3].ttlOrtu %>" data-alamatortu="<%= data[3].alamatOrtu %>" data-nikortu="<%= data[3].nikOrtu %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-alamat="<%= data[3].alamat %>" data-nik="<%= data[3].nik %>" data-destination="<%= data[3].destination %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
-                  <% } %>
-                  <button class="btnReject" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
-                  <button class="btnDone" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
-                </td>
-              </tr>
-              <% }) %>
-            </table>
-            <% } else { %>
-            <div class="">
-              <div class="d-flex justify-content-center align-items-center">
-                <a style="font-size: 24px; font-weight: 400;">Data No Found</a>
+          <div id="ALL" class="card table-content" style="background-color: #f7f7f7;">
+            <div class="card-body">
+              <table class="table table-container">
+                <tr>
+                  <th style="font-weight: 600; width: 4rem;">Type</th>
+                  <th style="font-weight: 600;">Nama</th>
+                  <th style="font-weight: 600;">NIK</th>
+                  <th style="font-weight: 600;">Action</th>
+                </tr>
+                <% postedData.forEach((data, index) => { %>
+                <tr>
+                  <td><%= data[0]%></td>
+                  <td><%= data[3].nama %></td>
+                  <td><%= data[3].nik %></td>
+                  <td>
+                    <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-namaKepala="<%= data[3].namaKepala %>" data-nokk="<%= data[3].noKK %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                    <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+                    <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+                  </td>
+                </tr>
+                <% }) %>
+              </table>
+            </div>
+          </div>
+          <table id="SKTM" class="table-content table-container">
+            <tr>
+              <th style="font-weight: 600;">Nama</th>
+              <th style="font-weight: 600;">NIK</th>
+              <th style="font-weight: 600;">TTL</th>
+              <th style="font-weight: 600;">Agama</th>
+              <th style="font-weight: 600;">Bekerja</th>
+              <th style="font-weight: 600;">Alamat</th>
+              <th style="font-weight: 600;">Action</th>
+            </tr>
+            <% postedData.forEach((data, index) => { %>
+            <tr>
+              <% if (data[0] === 'SKTM') { %>
+              <td><%= data[3].nama %></td>
+              <td><%= data[3].nik %></td>
+              <td><%= data[3].ttl %></td>
+              <td><%= data[3].agama %></td>
+              <td><%= data[3].bekerja %></td>
+              <td><%= data[3].alamat %></td>
+              <td>
+                <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-namaKepala="<%= data[3].namaKepala %>" data-nokk="<%= data[3].noKK %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+                <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+              </td>
+              <% } %>
+            </tr>
+            <% }) %>
+          </table>
+          <table id="SKIK" class="table-content table-container">
+            <tr>
+              <th style="font-weight: 600;">Nama</th>
+              <th style="font-weight: 600;">NIK</th>
+              <th style="font-weight: 600;">TTL</th>
+              <th style="font-weight: 600;">Agama</th>
+              <th style="font-weight: 600;">Bekerja</th>
+              <th style="font-weight: 600;">Alamat</th>
+              <th style="font-weight: 600;">Action</th>
+            </tr>
+            <% postedData.forEach((data, index) => { %>
+            <tr>
+              <% if (data[0] === 'SKIK') { %>
+              <td><%= data[3].nama %></td>
+              <td><%= data[3].nik %></td>
+              <td><%= data[3].ttl %></td>
+              <td><%= data[3].agama %></td>
+              <td><%= data[3].bekerja %></td>
+              <td><%= data[3].alamat %></td>
+              <td>
+                <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-namaortu="<%= data[3].namaOrtu %>" data-ttlortu="<%= data[3].ttlOrtu %>" data-alamatortu="<%= data[3].alamatOrtu %>" data-nikortu="<%= data[3].nikOrtu %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-alamat="<%= data[3].alamat %>" data-nik="<%= data[3].nik %>" data-destination="<%= data[3].destination %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+                <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+              </td>
+              <% } %>
+            </tr>
+            <% }) %>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer id="colophon" class="site-footer text-center" class="container-footer" role="contentinfo">
+      <div class="footer-info py-4 py-md-5">
+        <div class="container">
+          <div class="d-md-flex justify-content-md-around align-items-md-center">
+            <div class="text-center">
+              <div class="footer-identity d-md-flex align-items-md-center">
+                <div class="site-icon footer-icon mx-auto d-block mr-md-3 my-2 my-md-0">
+                  <img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="" width="60" height="60">
+                </div>
+                <div class="text-uppercase">
+                  <p>Pemerintah desa</p>
+                  <h5>Ngubalan </h5>
+                  <h6>Kec. Kalidawir – Kab. Tulungagung</h6>
+                </div>
               </div>
             </div>
-            <% } %>
+            <div class="text-center">
+              <ul class="list-unstyled list-ionicons w-auto mr-auto mt-3 mt-md-0 mb-0 text-left d-inline-block d-md-block footer-contact">
+                <li class="my-2"><i class="ionicons ion-ios-home"></i> Jalan Pakunden No. 1 Ds. Ngubalan Kec. Kalidawir Tulungagung</li>
+                <li class="my-2"><i class="ionicons ion-ios-call"></i> 0847 3679 5442 </li>
+                <li class="my-2"><i class="ionicons ion-ios-mail"></i> desangubalan [at] gmail.com</li>
+                <li class="my-2"><i class="ionicons ion-ios-planet"></i> http://ngubalan.tulungagungdaring.id</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-      <footer id="colophon" class="site-footer text-center" class="container-footer" role="contentinfo">
-        <div class="footer-info py-4 py-md-5">
-          <div class="container">
-            <div class="d-md-flex justify-content-md-around align-items-md-center">
-              <div class="text-center">
-                <div class="footer-identity d-md-flex align-items-md-center">
-                  <div class="site-icon footer-icon mx-auto d-block mr-md-3 my-2 my-md-0">
-                    <img src="http://ngubalan.tulungagungdaring.id/templates/webdesa/images/icon.png" alt="" class="" width="60" height="60">
-                  </div>
-                  <div class="text-uppercase">
-                    <p>Pemerintah desa</p>
-                    <h5>Ngubalan </h5>
-                    <h6>Kec. Kalidawir – Kab. Tulungagung</h6>
-                  </div>
-                </div>
-
-              </div>
-              <div class="text-center">
-                <ul class="list-unstyled list-ionicons w-auto mr-auto mt-3 mt-md-0 mb-0 text-left d-inline-block d-md-block footer-contact">
-                  <li class="my-2"><i class="ionicons ion-ios-home"></i> Jalan Pakunden No. 1 Ds. Ngubalan Kec. Kalidawir Tulungagung</li>
-                  <li class="my-2"><i class="ionicons ion-ios-call"></i> 0847 3679 5442 </li>
-                  <li class="my-2"><i class="ionicons ion-ios-mail"></i> desangubalan [at] gmail.com</li>
-                  <li class="my-2"><i class="ionicons ion-ios-planet"></i> http://ngubalan.tulungagungdaring.id</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <div class="container">
+        <div class="site-info py-4">
+          <p class="mb-0">
+            <span class="d-inline-block">© <a href="http://ngubalan.tulungagungdaring.id/">Pemerintah Desa Ngubalan</a>. Hak cipta dilindungi undang-undang.</span> <span class="d-inline-block">Jejaring <a href="http://desadaring.id/" target="_blank">Desa Daring</a> <a href="http://tulungagungdaring.id/" target="_blank">Tulungagung</a>.</span>
+          </p>
         </div>
-        <div class="container">
-          <div class="site-info py-4">
-            <p class="mb-0">
-              <span class="d-inline-block">© <a href="http://ngubalan.tulungagungdaring.id/">Pemerintah Desa Ngubalan</a>. Hak cipta dilindungi undang-undang.</span> <span class="d-inline-block">Jejaring <a href="http://desadaring.id/" target="_blank">Desa Daring</a> <a href="http://tulungagungdaring.id/" target="_blank">Tulungagung</a>.</span>
-            </p>
-          </div>
-        </div>
-        <a href="javascript:void(0);" id="rocketmeluncur" class="showrocket" style="display: inline;"></a>
-      </footer>
-    </div>
+      </div>
+      <a href="javascript:void(0);" id="rocketmeluncur" class="showrocket" style="display: inline;"></a>
+    </footer>
+  </div>
   </div>
 
   <script src="./js/index.ejs.js"></script>

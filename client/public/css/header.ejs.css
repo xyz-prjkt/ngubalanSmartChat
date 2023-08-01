@@ -320,3 +320,8 @@
     top: -46px !important;
   }
 }
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}

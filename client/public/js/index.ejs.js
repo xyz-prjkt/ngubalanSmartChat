@@ -1,3 +1,5 @@
+document.getElementById("defaultOpen").click();
+
 document.addEventListener("click", async function (event) {
   if (event.target && event.target.classList.contains("btnPrint")) {
     if (confirm(`Yakin untuk acc data ini? `)) {
@@ -126,3 +128,20 @@ document.addEventListener("click", async function (event) {
     window.location.reload();
   }
 });
+
+function openSK(evt, skType) {
+  var i, tableContent, navlinks;
+
+  tableContent = document.getElementsByClassName("table-content");
+  for (i = 0; i < tableContent.length; i++) {
+    tableContent[i].style.display = "none";
+  }
+
+  navlinks = document.getElementsByClassName("nav-link");
+  for (i = 0; i < navlinks.length; i++) {
+    navlinks[i].className = navlinks[i].className.replace(" active", "");
+  }
+
+  document.getElementById(skType).style.display = "block";
+  evt.currentTarget.className += " active";
+}
