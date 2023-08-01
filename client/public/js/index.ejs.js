@@ -96,6 +96,22 @@ document.addEventListener("click", async function (event) {
             datetime,
           }),
         });
+      } else if (skType === "SKDI") {
+        const nama = event.target.dataset.nama;
+        const alamat = event.target.dataset.alamat;
+
+        response = await fetch("/genDoc", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            skType,
+            nama,
+            alamat,
+            datetime,
+          }),
+        });
       }
 
       if (response.ok) {
