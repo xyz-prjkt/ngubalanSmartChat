@@ -140,6 +140,38 @@ document.addEventListener("click", async function (event) {
             datetime,
           }),
         });
+      } else if (skType === "SKU") {
+        const nama = event.target.dataset.nama;
+        const nik = event.target.dataset.nik;
+        const ttl = event.target.dataset.ttl;
+        const kelamin = event.target.dataset.kelamin;
+        const alamat = event.target.dataset.alamat;
+        const agama = event.target.dataset.agama;
+        const status = event.target.dataset.status;
+        const pendidikan = event.target.dataset.pendidikan;
+        const pekerjaan = event.target.dataset.pekerjaan;
+        const usaha = event.target.dataset.usaha;
+
+        response = await fetch("/genDoc", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            skType,
+            nama,
+            nik,
+            ttl,
+            kelamin,
+            alamat,
+            agama,
+            status,
+            pendidikan,
+            pekerjaan,
+            usaha,
+            datetime,
+          }),
+        });
       }
 
       if (response.ok) {
