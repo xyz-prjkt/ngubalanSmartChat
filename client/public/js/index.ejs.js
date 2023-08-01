@@ -172,6 +172,34 @@ document.addEventListener("click", async function (event) {
             datetime,
           }),
         });
+      } else if (skType === "SKK") {
+        const nama = event.target.dataset.nama;
+        const jenisKelamin = event.target.dataset.jeniskelamin;
+        const alamat = event.target.dataset.alamat;
+        const umur = event.target.dataset.umur;
+        const hariMeninggal = event.target.dataset.harimeninggal;
+        const tanggalMeninggal = event.target.dataset.tanggalmeninggal;
+        const lokasiMeninggal = event.target.dataset.lokasimeninggal;
+        const sebab = event.target.dataset.sebab;
+
+        response = await fetch("/genDoc", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            skType,
+            nama,
+            jenisKelamin,
+            alamat,
+            umur,
+            hariMeninggal,
+            tanggalMeninggal,
+            lokasiMeninggal,
+            sebab,
+            datetime,
+          }),
+        });
       }
 
       if (response.ok) {
