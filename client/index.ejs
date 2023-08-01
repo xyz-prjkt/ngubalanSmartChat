@@ -41,6 +41,9 @@
           <li class="nav-link link-dark" onclick="openSK(event, 'SKIK')">
             <a class="nav-link link-dark">SKIK</a>
           </li>
+          <li class="nav-link link-dark" onclick="openSK(event, 'SKMS')">
+            <a class="nav-link link-dark">SKMS</a>
+          </li>
         </ul>
       </div>
 
@@ -81,7 +84,13 @@
                   <td><%= data[3].nama %></td>
                   <td><%= data[3].nik %></td>
                   <td>
+                    <% if (data[0] === "SKTM") { %>
                     <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-namaKepala="<%= data[3].namaKepala %>" data-nokk="<%= data[3].noKK %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-bekerja="<%= data[3].bekerja %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                    <% } else if (data[0] === "SKIK") { %>
+                    <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-namaortu="<%= data[3].namaOrtu %>" data-ttlortu="<%= data[3].ttlOrtu %>" data-alamatortu="<%= data[3].alamatOrtu %>" data-nikortu="<%= data[3].nikOrtu %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-alamat="<%= data[3].alamat %>" data-nik="<%= data[3].nik %>" data-destination="<%= data[3].destination %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                    <% } else if (data[0] === "SKMS") { %>
+                    <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-nik="<%= data[3].nik %>" data-alamat="<%= data[3].alamat %>" data-usaha="<%= data[3].usaha %>" data-jenisalat="<%= data[3].jenisAlat %>" data-jumlahalat="<%= data[3].jumlahAlat %>" data-fungsialat="<%= data[3].fungsiAlat %>" data-jenisbbm="<%= data[3].jenisBBM %>" data-lokasispbu="<%= data[3].lokasiSPBU %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                    <% } %>
                     <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
                     <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
                   </td>
@@ -139,6 +148,34 @@
               <td><%= data[3].alamat %></td>
               <td>
                 <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-namaortu="<%= data[3].namaOrtu %>" data-ttlortu="<%= data[3].ttlOrtu %>" data-alamatortu="<%= data[3].alamatOrtu %>" data-nikortu="<%= data[3].nikOrtu %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-alamat="<%= data[3].alamat %>" data-nik="<%= data[3].nik %>" data-destination="<%= data[3].destination %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
+                <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+                <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+              </td>
+              <% } %>
+            </tr>
+            <% }) %>
+          </table>
+          <table id="SKMS" class="table-content table-container">
+            <tr>
+              <th style="font-weight: 600;">Nama</th>
+              <th style="font-weight: 600;">NIK</th>
+              <th style="font-weight: 600;">TTL</th>
+              <th style="font-weight: 600;">Usaha</th>
+              <th style="font-weight: 600;">Jenis Alat</th>
+              <th style="font-weight: 600;">Jumlah Alat</th>
+              <th style="font-weight: 600;">Action</th>
+            </tr>
+            <% postedData.forEach((data, index) => { %>
+            <tr>
+              <% if (data[0] === 'SKMS') { %>
+              <td><%= data[3].nama %></td>
+              <td><%= data[3].nik %></td>
+              <td><%= data[3].ttl %></td>
+              <td><%= data[3].usaha %></td>
+              <td><%= data[3].jenisAlat %></td>
+              <td><%= data[3].jumlahAlat %></td>
+              <td>
+                <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-nik="<%= data[3].nik %>" data-alamat="<%= data[3].alamat %>" data-usaha="<%= data[3].usaha %>" data-jenisalat="<%= data[3].jenisAlat %>" data-jumlahalat="<%= data[3].jumlahAlat %>" data-fungsialat="<%= data[3].fungsiAlat %>" data-jenisbbm="<%= data[3].jenisBBM %>" data-lokasispbu="<%= data[3].lokasiSPBU %>" data-datetime="<%= data[1] %>">Accept Data & Print</button>
                 <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
                 <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
               </td>

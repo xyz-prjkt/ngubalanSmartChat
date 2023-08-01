@@ -64,6 +64,38 @@ document.addEventListener("click", async function (event) {
             datetime,
           }),
         });
+      } else if (skType === "SKMS") {
+        const nama = event.target.dataset.nama;
+        const ttl = event.target.dataset.ttl;
+        const nik = event.target.dataset.nik;
+        const alamat = event.target.dataset.alamat;
+        const usaha = event.target.dataset.usaha;
+        const jenisAlat = event.target.dataset.jenisalat;
+        const jumlahAlat = event.target.dataset.jumlahalat;
+        const fungsiAlat = event.target.dataset.fungsialat;
+        const jenisBBM = event.target.dataset.jenisbbm;
+        const lokasiSPBU = event.target.dataset.lokasispbu;
+
+        response = await fetch("/genDoc", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            skType,
+            nama,
+            ttl,
+            nik,
+            alamat,
+            usaha,
+            jenisAlat,
+            jumlahAlat,
+            fungsiAlat,
+            jenisBBM,
+            lokasiSPBU,
+            datetime,
+          }),
+        });
       }
 
       if (response.ok) {

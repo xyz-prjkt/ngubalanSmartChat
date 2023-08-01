@@ -6,5 +6,4 @@ yarn.lock
 .env
 *.json
 *.xlsx
-SKTM
-SKIK
+SK*
