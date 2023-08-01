@@ -16,7 +16,6 @@ h1 {
 
 .table-container {
   height: 600px;
-  table-layout: fixed;
   margin: 0 auto;
   overflow-x: auto;
 }
@@ -57,7 +56,7 @@ tr:hover {
 .btnDone,
 .btnReject {
   padding: 5px 10px;
-  background-color: #4caf50;
+  background-color: #ff6b60;
   color: white;
   border: none;
   cursor: pointer;
@@ -65,11 +64,11 @@ tr:hover {
 }
 
 .btnDone {
-  background-color: #f44336;
+  background-color: #4caf50;
 }
 
-.btnReject {
-  background-color: #ff9800;
+.btnPrint {
+  background-color: #69a5ff;
 }
 
 .container-title {
