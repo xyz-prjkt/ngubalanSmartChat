@@ -47,6 +47,9 @@
           <li class="nav-link link-dark" onclick="openSK(event, 'SKDI')">
             <a class="nav-link link-dark">SK Domisili Instansi</a>
           </li>
+          <li class="nav-link link-dark" onclick="openSK(event, 'SKD')">
+            <a class="nav-link link-dark">SK Domisili</a>
+          </li>
         </ul>
       </div>
 
@@ -63,9 +66,12 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/">Semua SK</a></li>
-                <li class="nav-item"><a class="nav-link" href="/">SKTM</a></li>
-                <li class="nav-item"><a class="nav-link" href="/">SKCK</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'ALL')">Semua SK</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKTM')">SK Tidak Mampu</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKIK')">SK Izin Keluarga</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKMS')">SK Membeli BBM</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKDI')">SK Domisili Instansi</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKD')">SK Domisili</a></li>
               </ul>
             </div>
           </div>
@@ -93,6 +99,8 @@
                 <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-ttl="<%= data[3].ttl %>" data-nik="<%= data[3].nik %>" data-alamat="<%= data[3].alamat %>" data-usaha="<%= data[3].usaha %>" data-jenisalat="<%= data[3].jenisAlat %>" data-jumlahalat="<%= data[3].jumlahAlat %>" data-fungsialat="<%= data[3].fungsiAlat %>" data-jenisbbm="<%= data[3].jenisBBM %>" data-lokasispbu="<%= data[3].lokasiSPBU %>" data-datetime="<%= data[1] %>">Generate</button>
                 <% } else if (data[0] === "SKDI") { %>
                 <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Generate</button>
+                <% } else if (data[0] === "SKD") { %>
+                <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-kelamin="<%= data[3].kelamin %>" data-status="<%= data[3].status %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Generate</button>
                 <% } %>
                 <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
                 <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
@@ -197,6 +205,28 @@
               <td><%= data[3].alamat %></td>
               <td>
                 <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Generate</button>
+                <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+                <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+              </td>
+              <% } %>
+            </tr>
+            <% }) %>
+          </table>
+          <table id="SKD" class="table-content table-container">
+            <tr>
+              <th style="font-weight: 600;">Nama</th>
+              <th style="font-weight: 600;">NIK</th>
+              <th style="font-weight: 600;">Alamat</th>
+              <th style="font-weight: 600;">Action</th>
+            </tr>
+            <% postedData.forEach((data, index) => { %>
+            <tr>
+              <% if (data[0] === 'SKD') { %>
+              <td><%= data[3].nama %></td>
+              <td><%= data[3].nik %></td>
+              <td><%= data[3].alamat %></td>
+              <td>
+                <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-kelamin="<%= data[3].kelamin %>" data-status="<%= data[3].status %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-alamat="<%= data[3].alamat %>" data-datetime="<%= data[1] %>">Generate</button>
                 <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
                 <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
               </td>
