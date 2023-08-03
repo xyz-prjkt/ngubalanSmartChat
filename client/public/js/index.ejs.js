@@ -9,8 +9,6 @@ document.addEventListener("click", async function (event) {
       if (skType === "SKTM") {
         const nama = event.target.dataset.nama;
         const nik = event.target.dataset.nik;
-        const namaKepala = event.target.dataset.namakepala;
-        const noKK = event.target.dataset.nokk;
         const ttl = event.target.dataset.ttl;
         const agama = event.target.dataset.agama;
         const bekerja = event.target.dataset.bekerja;
@@ -25,8 +23,6 @@ document.addEventListener("click", async function (event) {
             skType,
             nama,
             nik,
-            namaKepala,
-            noKK,
             ttl,
             agama,
             bekerja,
