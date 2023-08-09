@@ -62,6 +62,9 @@
           <li class="nav-link link-dark" onclick="openSK(event, 'SKHIL')">
             <a class="nav-link link-dark">SK Kehilangan</a>
           </li>
+          <li class="nav-link link-dark" onclick="openSK(event, 'SKCK')">
+            <a class="nav-link link-dark">SK Catatan Kepolisian</a>
+          </li>
         </ul>
       </div>
 
@@ -88,6 +91,7 @@
                 <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKK')">SK Kematian</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKPB')">SK Pengajuan Bank</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKHIL')">SK Kehilangan</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="openSK(event, 'SKCK')">SK Catatan Kepolisian</a></li>
               </ul>
             </div>
           </div>
@@ -125,6 +129,8 @@
                 <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-kelamin="<%= data[3].kelamin %>" data-alamat="<%= data[3].alamat %>" data-agama="<%= data[3].agama %>" data-status="<%= data[3].status %>" data-pendidikan="<%= data[3].pendidikan %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-usaha="<%= data[3].usaha %>" data-bank="<%= data[3].bank %>" data-datetime="<%= data[1] %>">Generate</button>
                 <% } else if (data[0] === "SKHIL") { %>
                 <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-kelamin="<%= data[3].kelamin %>" data-alamat="<%= data[3].alamat %>" data-agama="<%= data[3].agama %>" data-status="<%= data[3].status %>" data-pendidikan="<%= data[3].pendidikan %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-hilang="<%= data[3].hilang %>" data-keterangan="<%= data[3].keterangan %>" data-datetime="<%= data[1] %>">Generate</button>
+                <% } else if (data[0] === "SKCK") { %>
+                  <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-kelamin="<%= data[3].kelamin %>" data-alamat="<%= data[3].alamat %>" data-status="<%= data[3].status %>" data-pendidikan="<%= data[3].pendidikan %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-keperluan="<%= data[3].keperluan %>" data-datetime="<%= data[1] %>">Generate</button>
                 <% } %>
                 <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
                 <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
@@ -347,6 +353,28 @@
                 <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-kelamin="<%= data[3].kelamin %>" data-alamat="<%= data[3].alamat %>" data-agama="<%= data[3].agama %>" data-status="<%= data[3].status %>" data-pendidikan="<%= data[3].pendidikan %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-hilang="<%= data[3].hilang %>" data-keterangan="<%= data[3].keterangan %>" data-datetime="<%= data[1] %>">Generate</button>
                 <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
                 <button class="btnDone" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Done</button>
+              </td>
+              <% } %>
+            </tr>
+            <% }) %>
+          </table>
+          <table id="SKCK" class="table-content table-container">
+            <tr>
+              <th style="font-weight: 600;">Nama</th>
+              <th style="font-weight: 600;">NIK</th>
+              <th style="font-weight: 600;">Keperluan</th>
+              <th style="font-weight: 600;">Action</th>
+            </tr>
+            <% postedData.forEach((data, index) => { %>
+            <tr>
+              <% if (data[0] === 'SKCK') { %>
+              <td><%= data[3].nama %></td>
+              <td><%= data[3].nik %></td>
+              <td><%= data[3].keperluan %></td>
+              <td>
+                <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-kelamin="<%= data[3].kelamin %>" data-alamat="<%= data[3].alamat %>" data-agama="<%= data[3].agama %>" data-status="<%= data[3].status %>" data-pendidikan="<%= data[3].pendidikan %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-hilang="<%= data[3].hilang %>" data-keterangan="<%= data[3].keterangan %>" data-datetime="<%= data[1] %>">Generate</button>
+                <button class="btnReject" style="font-weight: 400;" data-id="<%= index %>" data-notelp="<%= data[2]%>">Reject</button>
+                <button class="btnPrint" style="font-weight: 400;" data-id="<%= index %>" data-sktype="<%= data[0] %>" data-nama="<%= data[3].nama %>" data-nik="<%= data[3].nik %>" data-ttl="<%= data[3].ttl %>" data-agama="<%= data[3].agama %>" data-kelamin="<%= data[3].kelamin %>" data-alamat="<%= data[3].alamat %>" data-status="<%= data[3].status %>" data-pendidikan="<%= data[3].pendidikan %>" data-pekerjaan="<%= data[3].pekerjaan %>" data-keperluan="<%= data[3].keperluan %>" data-datetime="<%= data[1] %>">Generate</button>
               </td>
               <% } %>
             </tr>

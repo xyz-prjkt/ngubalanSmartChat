@@ -264,6 +264,38 @@ document.addEventListener("click", async function (event) {
             datetime,
           }),
         });
+      } else if (skType === "SKCK") {
+        const nama = event.target.dataset.nama;
+        const nik = event.target.dataset.nik;
+        const ttl = event.target.dataset.ttl;
+        const agama = event.target.dataset.agama;
+        const kelamin = event.target.dataset.kelamin;
+        const alamat = event.target.dataset.alamat;
+        const status = event.target.dataset.status;
+        const pendidikan = event.target.dataset.pendidikan;
+        const pekerjaan = event.target.dataset.pekerjaan;
+        const keperluan = event.target.dataset.keperluan;
+
+        response = await fetch("/genDoc", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            skType,
+            nama,
+            nik,
+            ttl,
+            agama,
+            kelamin,
+            alamat,
+            status,
+            pendidikan,
+            pekerjaan,
+            keperluan,
+            datetime,
+          }),
+        });
       }
 
       if (response.ok) {
@@ -286,15 +318,11 @@ document.addEventListener("click", async function (event) {
           return;
         }
 
-        const response = await fetch(`/deleteData/${dataId}`, {
+        await fetch(`/deleteData/${dataId}`, {
           method: "DELETE",
         });
 
-        if (response.ok) {
-          window.location.reload();
-        }
-
-        fetch("/sendMsg", {
+        await fetch("/sendMsg", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -304,6 +332,7 @@ document.addEventListener("click", async function (event) {
             msg,
           }),
         });
+        window.location.reload();
       }
     }
   } else if (event.target && event.target.classList.contains("btnDone")) {
@@ -311,7 +340,9 @@ document.addEventListener("click", async function (event) {
     const notelp = event.target.dataset.notelp;
     const msg = "Surat sudah siap diambil di Balai Desa";
 
-    fetch("/sendMsg", {
+    console.log(notelp);
+
+    await fetch("/sendMsg", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -322,7 +353,7 @@ document.addEventListener("click", async function (event) {
       }),
     });
 
-    fetch(`/deleteData/${dataId}`, {
+    await fetch(`/deleteData/${dataId}`, {
       method: "DELETE",
     });
     window.location.reload();
